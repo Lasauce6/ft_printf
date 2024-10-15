@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 20:30:43 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/02 16:00:05 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:33:58 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	fill_res(char ***res, char const *s, char c, size_t *j)
 			i++;
 		else
 		{
-			(*res)[*j] = strndup(s + i, len_word(s, c, i));
+			(*res)[*j] = ft_strndup(s + i, len_word(s, c, i));
 			if (!(*res)[*j])
 			{
 				while ((*j)-- != 0)

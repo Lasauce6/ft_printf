@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 23:27:33 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/14 13:34:51 by rbaticle         ###   ########.fr       */
+/*   Created: 2024/10/11 10:41:50 by rbaticle          #+#    #+#             */
+/*   Updated: 2024/10/15 13:06:53 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# define BASE16_L "0123456789abcdef"
+# define BASE16_U "0123456789ABCDEF"
+# include <stdarg.h>
+# include "./libft/libft.h"
 
-char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
-{
-	size_t	i;
-	char	*str;
+int	ft_printf(const char *str, ...);
 
-	str = malloc(ft_strlen(s) + 1);
-	if (!str)
-		return (0);
-	i = -1;
-	if (s)
-	{
-		while (s[++i])
-			str[i] = f(i, s[i]);
-	}
-	str[i] = '\0';
-	return (str);
-}
+#endif

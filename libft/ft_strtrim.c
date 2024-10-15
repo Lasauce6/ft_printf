@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:45:20 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/02 16:00:25 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:33:22 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*str;
 
 	if (!s1)
-		return (str);
+		return (0);
 	pos = 0;
 	while (in_str(s1[pos], set))
 		pos++;

@@ -6,11 +6,12 @@
 #    By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/24 09:46:20 by rbaticle          #+#    #+#              #
-#    Updated: 2024/10/03 10:29:47 by rbaticle         ###   ########.fr        #
+#    Updated: 2024/10/14 13:30:42 by rbaticle         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+CFLAGS = -Wall -Werror -Wextra
 
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 	   ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c \
