@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 20:30:43 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/14 13:33:58 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:38:52 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ static int	fill_res(char ***res, char const *s, char c, size_t *j)
 			if (!(*res)[*j])
 			{
 				while ((*j)-- != 0)
-					free(*res[*j]);
-				free(*res[0]);
+					free((*res)[*j]);
 				free(*res);
 				return (0);
 			}

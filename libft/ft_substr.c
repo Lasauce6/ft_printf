@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 15:18:49 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/02 16:00:36 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:43:10 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*set_null_malloc(void)
 	char	*str;
 
 	str = malloc(1);
+	if (!str)
+		return (0);
 	*str = 0;
 	return (str);
 }
@@ -27,7 +29,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	l;
 	char	*str;
 
-	if (start >= ft_strlen(s))
+	if (!s)
+		return (0);
+	if (start >= ft_strlen(s) || ft_strlen(s) == 0)
 		str = set_null_malloc();
 	else
 	{
