@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:20:13 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/10/15 13:22:54 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:36:20 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static int	putptr(unsigned long p)
 	len = 0;
 	if (!p)
 		return (ft_putstr_fd("(nil)", 1));
-	len += write(1, "0x", 2);
+	if (write(1, "0x", 1) == -1)
+		return (-1);
+	len += 2;
 	i = 0;
 	while (p)
 	{
@@ -31,7 +33,11 @@ static int	putptr(unsigned long p)
 		i++;
 	}
 	while (i--)
-		len += write(1, &addr[i], 1);
+	{
+		if (write(1, &addr[i], 1) == -1)
+			return (-1);
+		len++;
+	}
 	return (len);
 }
 
@@ -54,7 +60,9 @@ static int	puthex(unsigned long n, int uppercase)
 			c = BASE16_U[nb % 16];
 		else
 			c = BASE16_L[nb % 16];
-		count += (write(1, &c, 1));
+		if (write(1, &c, 1) == -1)
+			return (-1);
+		count++;
 	}
 	return (count);
 }
@@ -80,30 +88,46 @@ static int	handle_percent(const char *str, va_list *valist)
 	return (write(1, str, 1));
 }
 
+int	iter_str(const char *str, va_list *valist)
+{
+	int	count;
+	int	tmp;
+
+	count = 0;
+	while (*str)
+	{
+		if (*str != '%')
+		{
+			tmp = ft_putchar_fd(*str, 1);
+			if (tmp == -1)
+				return (0);
+			count += tmp;
+			str++;
+		}
+		else
+		{
+			tmp = handle_percent(str + 1, valist);
+			if (tmp == -1)
+				return (0);
+			count += tmp;
+			str += 2;
+		}
+	}
+	return (count);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	int		count;
-	size_t	i;
 	va_list	valist;
 
 	count = 0;
 	if (str)
 	{
 		va_start(valist, str);
-		i = 0;
-		while (str[i])
-		{
-			if (str[i] != '%')
-			{
-				count += ft_putchar_fd(str[i], 1);
-				i++;
-			}
-			else
-			{
-				count += handle_percent(&str[i + 1], &valist);
-				i += 2;
-			}
-		}
+		count = iter_str(str, &valist);
+		if (!count)
+			return (-1);
 		va_end(valist);
 	}
 	return (count);
