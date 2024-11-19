@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:20:13 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/11/19 14:36:20 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:22:43 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	putptr(unsigned long p)
 	len = 0;
 	if (!p)
 		return (ft_putstr_fd("(nil)", 1));
-	if (write(1, "0x", 1) == -1)
+	if (write(1, "0x", 2) == -1)
 		return (-1);
 	len += 2;
 	i = 0;
@@ -100,7 +100,7 @@ int	iter_str(const char *str, va_list *valist)
 		{
 			tmp = ft_putchar_fd(*str, 1);
 			if (tmp == -1)
-				return (0);
+				return (-1);
 			count += tmp;
 			str++;
 		}
@@ -108,7 +108,7 @@ int	iter_str(const char *str, va_list *valist)
 		{
 			tmp = handle_percent(str + 1, valist);
 			if (tmp == -1)
-				return (0);
+				return (-1);
 			count += tmp;
 			str += 2;
 		}
@@ -126,7 +126,7 @@ int	ft_printf(const char *str, ...)
 	{
 		va_start(valist, str);
 		count = iter_str(str, &valist);
-		if (!count)
+		if (count == -1)
 			return (-1);
 		va_end(valist);
 	}
