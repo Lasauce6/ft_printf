@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:20:13 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/11/19 17:22:43 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/12/10 10:44:49 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,7 @@ int	ft_printf(const char *str, ...)
 			return (-1);
 		va_end(valist);
 	}
+	else
+		return (-1);
 	return (count);
 }
