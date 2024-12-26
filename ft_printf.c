@@ -6,7 +6,7 @@
 /*   By: rbaticle <rbaticle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 16:20:13 by rbaticle          #+#    #+#             */
-/*   Updated: 2024/12/10 10:44:49 by rbaticle         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:17:12 by rbaticle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	putptr(unsigned long p)
 
 	len = 0;
 	if (!p)
-		return (ft_putstr_fd("(nil)", 1));
+		return (ft_putstr_fd(NULL_PTR, 1));
 	if (write(1, "0x", 2) == -1)
 		return (-1);
 	len += 2;
@@ -129,8 +129,7 @@ int	ft_printf(const char *str, ...)
 		if (count == -1)
 			return (-1);
 		va_end(valist);
+		return (count);
 	}
-	else
-		return (-1);
-	return (count);
+	return (-1);
 }
